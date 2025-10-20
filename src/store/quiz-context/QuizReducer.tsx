@@ -1,8 +1,4 @@
-import {
-  ActionTypes,
-  type QuizActions,
-  type QuizState,
-} from "./QuizTypes";
+import { ActionTypes, type QuizActions, type QuizState } from "./QuizTypes";
 
 export const initialState: QuizState = {
   questions: [],

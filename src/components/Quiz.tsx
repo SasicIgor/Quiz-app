@@ -4,7 +4,11 @@ const Quiz = () => {
   const { state } = useQuizContext();
   return (
     <div>
-      <p>{state.questions ? "Questions" : "No questions for this criteria"}</p>
+      <p>
+        {state.questions
+          ? `${state.questions[0].question.text}`
+          : "No questions for this criteria"}
+      </p>
     </div>
   );
 };

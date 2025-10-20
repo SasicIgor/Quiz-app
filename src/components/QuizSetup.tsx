@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { categories, difficulties } from "../store/constants";
 import { useQuizContext } from "../store/quiz-context/useQuizContext";
-import { ActionTypes } from "../store/quiz-context/QuizTypes";
+import { ActionTypes, type Question } from "../store/quiz-context/QuizTypes";
+import { fetchQuestions } from "../service/apiService";
 
 type QuizSetupType = { category: string; difficulty: string };
 
@@ -10,6 +11,27 @@ const QuizSetup = () => {
     category: "",
     difficulty: "",
   });
+
+  const handleFetchQuiz = () => {
+    if (!quizSetup.category && !quizSetup.difficulty) {
+      return;
+    }
+
+    const path = `questions?categories=${quizSetup.category}&difficulty=${quizSetup.difficulty}`;
+    fetchQuestions<Question[]>(path)
+      .then((value) =>
+        dispatch({
+          type: ActionTypes.SET_QUESTIONS,
+          payload: value,
+        })
+      )
+      .finally(() =>
+        dispatch({
+          type: ActionTypes.CHANGE_STATUS,
+          payload: "active",
+        })
+      );
+  };
 
   const { dispatch } = useQuizContext();
 
@@ -38,10 +60,7 @@ const QuizSetup = () => {
               className="capitalize border-2 p-1 cursor-pointer flex-wrap"
               onClick={() => {
                 setQuizSetup((prev) => ({ ...prev, difficulty }));
-                dispatch({
-                  type: ActionTypes.CHANGE_STATUS,
-                  payload: "active",
-                });
+                handleFetchQuiz();
               }}
             >
               {difficulty}
