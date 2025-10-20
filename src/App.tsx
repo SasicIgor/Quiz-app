@@ -1,16 +1,15 @@
-import { useEffect, useState } from "react";
-import { fetchQuestion } from "./service/apiService";
-import type { Question } from "types";
+import { useQuizContext } from "./store/quiz-context/useQuizContext";
+import QuizSetup from "./components/QuizSetup";
+import Quiz from "./components/Quiz";
 
 function App() {
-  const [quiz, setQuiz] = useState<Question[]>([]);
-  useEffect(() => {
-    fetchQuestion<Question[]>("questions?categories=geography").then(setQuiz);
-  }, []);
-  console.log(quiz);
+  const { state } = useQuizContext();
   return (
     <>
-      <h1 className="text-3xl font-bold">Hello world!</h1>
+      <h1 className="text-3xl font-bold"></h1>
+      {state.status === "inactive" && <QuizSetup />}
+      {state.status === "active" && <Quiz />}
+      <p>{state.status}</p>
     </>
   );
 }
