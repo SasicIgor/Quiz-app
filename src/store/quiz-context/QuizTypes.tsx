@@ -37,7 +37,7 @@ export enum ActionTypes {
 
 export type SetQuestions = {
   type: ActionTypes.SET_QUESTIONS;
-  payload: Question[];
+  payload: FormatedQuestion[];
 };
 
 export type ChangeStatus = {
