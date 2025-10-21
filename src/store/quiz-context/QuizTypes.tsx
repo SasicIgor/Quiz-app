@@ -13,6 +13,11 @@ export type Question = {
 };
 type QuestionText = { text: string };
 
+type QuestionAnswers = { answers: string[] };
+
+//question with shuffled answers
+export type FormatedQuestion = Question & QuestionAnswers;
+
 //inactive before we start the quiz, when user picks the quiz
 //active while user plays the quiz
 //finished when user finish the quiz before taking another one
@@ -20,7 +25,7 @@ export type QuizStatus = "inactive" | "active" | "finished";
 
 //state part of the context
 export type QuizState = {
-  questions: Question[];
+  questions: FormatedQuestion[];
   status: QuizStatus;
 };
 
@@ -43,7 +48,6 @@ export type ChangeStatus = {
 export type QuizActions = SetQuestions | ChangeStatus;
 
 export type QuizContextType = {
-  state: QuizState
-  dispatch: React.Dispatch<QuizActions>
-}
-
+  state: QuizState;
+  dispatch: React.Dispatch<QuizActions>;
+};

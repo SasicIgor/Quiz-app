@@ -3,6 +3,7 @@ import { categories, difficulties } from "../store/constants";
 import { useQuizContext } from "../store/quiz-context/useQuizContext";
 import { ActionTypes, type Question } from "../store/quiz-context/QuizTypes";
 import { fetchQuestions } from "../service/apiService";
+import { shuffleAnswers } from "../utils/utils";
 
 type QuizSetupType = { category: string; difficulty: string };
 
@@ -19,12 +20,13 @@ const QuizSetup = () => {
 
     const path = `questions?categories=${quizSetup.category}&difficulty=${quizSetup.difficulty}`;
     fetchQuestions<Question[]>(path)
-      .then((value) =>
+      .then((value) => {
+        const formatedQuestions = shuffleAnswers(value);
         dispatch({
           type: ActionTypes.SET_QUESTIONS,
-          payload: value,
-        })
-      )
+          payload: formatedQuestions,
+        });
+      })
       .finally(() =>
         dispatch({
           type: ActionTypes.CHANGE_STATUS,
