@@ -7,6 +7,7 @@ import {
 export const initialTrackerState = {
   currentIndex: 0,
   correctAnswers: 0,
+  userAnswer: "",
 };
 
 export const trackerReducer = (
@@ -14,8 +15,19 @@ export const trackerReducer = (
   action: QTrackerActions
 ) => {
   switch (action.type) {
+    case QTrackerActionTypes.SET_USER_ANSWER: {
+      return {
+        ...state,
+        userAnswer: action.payload,
+      };
+    }
+
     case QTrackerActionTypes.INCREASE_INDEX: {
-      return { ...state, currentIndex: state.currentIndex + 1 };
+      return {
+        ...state,
+        currentIndex: state.currentIndex + 1,
+        userAnswer: "",
+      };
     }
     case QTrackerActionTypes.INCREASE_CANSWERS: {
       return { ...state, correctAnswers: state.correctAnswers + 1 };
