@@ -4,13 +4,13 @@ import { QTrackerActionTypes } from "store/quiz-tracker-context/QTrackerTypes";
 import { useQTrackerContext } from "store/quiz-tracker-context/useQTrackerContext";
 
 const QuizDynamics = () => {
-  const { state: qState, dispatch } = useQuizContext();
+  const { state: qState, dispatch, fetchQuiz } = useQuizContext();
 
   const { state: tState, dispatch: TDispatch } = useQTrackerContext();
   const { currentIndex, userAnswer } = tState;
 
   return (
-    <div>
+    <div className="flex justify-between text-white">
       <button
         onClick={
           currentIndex + 1 === qState.questions.length
@@ -22,13 +22,25 @@ const QuizDynamics = () => {
             : () => TDispatch({ type: QTrackerActionTypes.INCREASE_INDEX })
         }
         disabled={!userAnswer}
-        className={`cursor-pointer p-2 m-2 bg-blue-600 ${
-          !userAnswer && "opacity-50"
+        className={`cursor-pointer rounded py-3 m-2 bg-blue-600 w-2/7 button-hover ${
+          !userAnswer && "opacity-0"
         }`}
       >
-        {currentIndex + 1 === qState.questions.length
-          ? "Results"
-          : "Next question"}
+        {currentIndex + 1 === qState.questions.length ? "Results" : "Next"}
+      </button>
+      <button
+        className={`cursor-pointer rounded py-3 m-2 bg-blue-600 w-2/7 button-hover`}
+        onClick={() => fetchQuiz()}
+      >
+        Retry
+      </button>
+      <button
+        className={`cursor-pointer rounded py-3 m-2 bg-blue-600 w-2/7 button-hover`}
+        onClick={() =>
+          dispatch({ type: ActionTypes.CHANGE_STATUS, payload: "inactive" })
+        }
+      >
+        Quit
       </button>
     </div>
   );

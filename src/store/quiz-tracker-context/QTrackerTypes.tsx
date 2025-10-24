@@ -11,6 +11,7 @@ export enum QTrackerActionTypes {
   //CANSWERS=correct answers
   INCREASE_CANSWERS = "INCREASE_CORRECT_CANSWERS",
   SET_USER_ANSWER = "SET_USER_ANSWER",
+  RESET_STATE = "RESET_STATE",
 }
 
 export type IncreaseIndex = {
@@ -26,7 +27,15 @@ export type SetUserAnswer = {
   payload: string;
 };
 
-export type QTrackerActions = IncreaseCAnswers | IncreaseIndex | SetUserAnswer;
+export type ResetState = {
+  type: QTrackerActionTypes.RESET_STATE;
+};
+
+export type QTrackerActions =
+  | IncreaseCAnswers
+  | IncreaseIndex
+  | SetUserAnswer
+  | ResetState;
 
 export type QTrackerContextType = {
   state: QTrackerState;

@@ -32,6 +32,9 @@ export const trackerReducer = (
     case QTrackerActionTypes.INCREASE_CANSWERS: {
       return { ...state, correctAnswers: state.correctAnswers + 1 };
     }
+    case QTrackerActionTypes.RESET_STATE: {
+      return initialTrackerState;
+    }
     default:
       return state;
   }

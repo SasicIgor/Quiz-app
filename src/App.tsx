@@ -7,12 +7,13 @@ function App() {
   const { state } = useQuizContext();
   const { state: trakerState } = useQTrackerContext();
   return (
-    <>
-      <h1 className="text-3xl font-bold"></h1>
-      {state.status === "inactive" && <QuizSetup />}
-      {state.status === "active" && <Quiz />}
-      {state.status === "finished" && trakerState.correctAnswers}
-    </>
+    <div className="grid grid-cols-[minmax(0,auto)_minmax(0,1200px)_minmax(0,auto)] gap-5">
+      <div className="col-start-2">
+        {state.status === "inactive" && <QuizSetup />}
+        {state.status === "active" && <Quiz />}
+        {state.status === "finished" && trakerState.correctAnswers}
+      </div>
+    </div>
   );
 }
 
