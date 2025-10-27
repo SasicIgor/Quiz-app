@@ -12,7 +12,8 @@ const QuizSetup = () => {
     <>
       <div className="h-20 flex-c">
         <h1>
-          Welcome to our new quiz to test your knowledge in varius categories.
+          Welcome to our new quiz to test your knowledge. Please choose one of
+          the categories.
         </h1>
       </div>
       <div className="grid grid-cols-12 gap-3 md:gap-5">
@@ -21,11 +22,11 @@ const QuizSetup = () => {
           return (
             <button
               key={category}
-              className={`capitalize rounded border-1 cursor-pointer col-span-6 md:col-span-4 h-40 md:h-45 lg:h-55 flex-c flex-col ${
+              className={`button button-hover flex-c flex-col col-span-6 md:col-span-4 h-40 md:h-45 lg:h-55 ${
                 state.category !== "" &&
                 state.category !== category &&
                 `opacity-50`
-              } button-hover`}
+              } `}
               onClick={() => {
                 dispatch({ type: ActionTypes.SET_CATEGORY, payload: category });
               }}
@@ -44,12 +45,15 @@ const QuizSetup = () => {
       <div className="row-start-3 grid grid-cols-12 gap-3 md:gap-5">
         {state.category && (
           <>
-            <h2 className="col-span-full">Choose difficulty</h2>
+            <h2 className="col-span-full">
+              Choose the difficulty as well, but be aware that it will affect
+              questions and time
+            </h2>
             {difficulties.map((difficulty) => {
               return (
                 <button
                   key={difficulty}
-                  className={`capitalize rounded border-1 p-2 cursor-pointer col-span-4 md:col-span-2 row-start-2 ${
+                  className={`button p-2 col-span-4 md:col-span-2 row-start-2 ${
                     state.difficulty !== "" &&
                     state.difficulty !== difficulty &&
                     `opacity-50  bg-gray-200`
@@ -69,7 +73,7 @@ const QuizSetup = () => {
         )}
         {state.category && state.difficulty && (
           <button
-            className="capitalize rounded p-2 cursor-pointer col-span-12 md:col-span-6 row-start-3 md:row-start-2 bg-blue-400 flex-c button-hover"
+            className="button p-2 col-span-12 md:col-span-6 row-start-3 md:row-start-2 bg-blue-400 flex-c button-hover"
             onClick={() => {
               // fetchQuiz();
               handleDialogOpen({

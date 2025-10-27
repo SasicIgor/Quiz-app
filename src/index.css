@@ -4,6 +4,9 @@
   .flex-c {
     @apply flex justify-center items-center;
   }
+  .button {
+    @apply capitalize rounded border-1 cursor-pointer;
+  }
   .button-hover {
     @apply transition-transform hover:-translate-y-0.5 duration-200 ease-in-out;
   }

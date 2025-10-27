@@ -26,13 +26,13 @@ const Dialog = () => {
         <div className="flex-c p-2 m-2">
           <button
             onClick={handleDialogClose}
-            className="bg-blue-400 p-2 m-2 cursor-pointer button-hover rounded"
+            className="bg-blue-400 button button-hover p-2 m-2"
           >
             Cancel
           </button>
           <button
             onClick={handleDialogConfirm}
-            className="bg-blue-400 p-2 m-2 cursor-pointer button-hover rounded"
+            className="bg-blue-400 button button-hover p-2 m-2"
           >
             Okay
           </button>
