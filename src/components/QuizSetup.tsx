@@ -2,9 +2,11 @@ import { categories, difficulties } from "../store/constants";
 import { useQuizContext } from "../store/quiz-context/useQuizContext";
 import { ActionTypes } from "../store/quiz-context/QuizTypes";
 import { TailSpin } from "react-loader-spinner";
+import { useDialogContext } from "store/dialog-context/useDialogContext";
 
 const QuizSetup = () => {
   const { state, dispatch, fetchQuiz } = useQuizContext();
+  const { handleDialogOpen } = useDialogContext();
 
   return (
     <>
@@ -47,7 +49,7 @@ const QuizSetup = () => {
               return (
                 <button
                   key={difficulty}
-                  className={`capitalize rounded border-1 p-2 cursor-pointer col-span-2 row-start-2 ${
+                  className={`capitalize rounded border-1 p-2 cursor-pointer col-span-4 md:col-span-2 row-start-2 ${
                     state.difficulty !== "" &&
                     state.difficulty !== difficulty &&
                     `opacity-50  bg-gray-200`
@@ -67,9 +69,13 @@ const QuizSetup = () => {
         )}
         {state.category && state.difficulty && (
           <button
-            className="capitalize rounded p-2 cursor-pointer col-span-6 row-start-2 bg-blue-400 flex-c button-hover"
+            className="capitalize rounded p-2 cursor-pointer col-span-12 md:col-span-6 row-start-3 md:row-start-2 bg-blue-400 flex-c button-hover"
             onClick={() => {
-              fetchQuiz();
+              // fetchQuiz();
+              handleDialogOpen({
+                text: "Ready to start? You will have 1 minut to answer questions. Good luck!",
+                func: () => fetchQuiz(),
+              });
             }}
             disabled={state.isLoading}
           >

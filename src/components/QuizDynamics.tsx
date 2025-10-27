@@ -1,3 +1,4 @@
+import { useDialogContext } from "store/dialog-context/useDialogContext";
 import { ActionTypes } from "store/quiz-context/QuizTypes";
 import { useQuizContext } from "store/quiz-context/useQuizContext";
 import { QTrackerActionTypes } from "store/quiz-tracker-context/QTrackerTypes";
@@ -5,6 +6,8 @@ import { useQTrackerContext } from "store/quiz-tracker-context/useQTrackerContex
 
 const QuizDynamics = () => {
   const { state: qState, dispatch, fetchQuiz } = useQuizContext();
+
+  const { handleDialogOpen } = useDialogContext();
 
   const { state: tState, dispatch: TDispatch } = useQTrackerContext();
   const { currentIndex, userAnswer } = tState;
@@ -30,15 +33,27 @@ const QuizDynamics = () => {
       </button>
       <button
         className={`cursor-pointer rounded py-3 m-2 bg-blue-600 w-2/7 button-hover`}
-        onClick={() => fetchQuiz()}
+        onClick={() => {
+          handleDialogOpen({
+            text: "Retry? Really? You are not gonna have the same questions, are you sure?",
+            func: () => fetchQuiz(),
+          });
+        }}
       >
         Retry
       </button>
       <button
         className={`cursor-pointer rounded py-3 m-2 bg-blue-600 w-2/7 button-hover`}
-        onClick={() =>
-          dispatch({ type: ActionTypes.CHANGE_STATUS, payload: "inactive" })
-        }
+        onClick={() => {
+          handleDialogOpen({
+            text: "Quitting? Your mother raised you better!",
+            func: () =>
+              dispatch({
+                type: ActionTypes.CHANGE_STATUS,
+                payload: "inactive",
+              }),
+          });
+        }}
       >
         Quit
       </button>

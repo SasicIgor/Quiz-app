@@ -22,7 +22,7 @@ const QuizQuestion = () => {
     });
 
     setQuestion(questions[currentIndex]);
-  }, [currentIndex]);
+  }, [currentIndex, questions]);
 
   if (!question) {
     return;
