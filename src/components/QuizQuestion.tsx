@@ -5,6 +5,7 @@ import type { FormatedQuestion } from "store/quiz-context/QuizTypes";
 import { useQuizContext } from "store/quiz-context/useQuizContext";
 import { QTrackerActionTypes } from "store/quiz-tracker-context/QTrackerTypes";
 import { useQTrackerContext } from "store/quiz-tracker-context/useQTrackerContext";
+import Timer from "./Timer";
 
 const QuizQuestion = () => {
   const [question, setQuestion] = useState<FormatedQuestion>();
@@ -55,7 +56,12 @@ const QuizQuestion = () => {
       <p className="absolute top-2 left-3">
         Q: {currentIndex + 1}/{questions.length}
       </p>
-      <h2 className="w-full md:w-1/3 font-semibold relative text-xl">{question.question.text}</h2>
+      <p className="absolute top-2 right-3">
+        <Timer />
+      </p>
+      <h2 className="w-full md:w-1/3 font-semibold relative text-xl">
+        {question.question.text}
+      </h2>
 
       <div className="flex-c flex-col w-full md:w-1/3">
         {question.answers.map((option) => {

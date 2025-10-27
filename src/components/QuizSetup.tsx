@@ -8,6 +8,18 @@ const QuizSetup = () => {
   const { state, dispatch, fetchQuiz } = useQuizContext();
   const { handleDialogOpen } = useDialogContext();
 
+  const timerDuration = ()=> {switch(state.difficulty){
+    case "easy":{
+      return "2 minutes"
+    }
+    case "medium":{
+      return "1 and a half minute"
+    }
+    case "hard":{
+      return "1 minute"
+    }
+  }}
+
   return (
     <>
       <div className="h-20 flex-c">
@@ -77,7 +89,7 @@ const QuizSetup = () => {
             onClick={() => {
               // fetchQuiz();
               handleDialogOpen({
-                text: "Ready to start? You will have 1 minut to answer questions. Good luck!",
+                text: `Ready to start? You will have ${timerDuration()} to answer questions. Good luck!`,
                 func: () => fetchQuiz(),
               });
             }}
