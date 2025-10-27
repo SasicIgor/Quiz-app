@@ -1,12 +1,8 @@
 import { useDialogContext } from "store/dialog-context/useDialogContext";
 
 const Dialog = () => {
-  const {
-    message,
-    isOpen,
-    handleDialogClose,
-    handleDialogConfirm,
-  } = useDialogContext();
+  const { message, isOpen, handleDialogClose, handleDialogConfirm } =
+    useDialogContext();
 
   if (!isOpen) return null;
 
@@ -26,13 +22,13 @@ const Dialog = () => {
         <div className="flex-c p-2 m-2">
           <button
             onClick={handleDialogClose}
-            className="bg-blue-400 button button-hover p-2 m-2"
+            className="btn-secondary button button-hover p-2 m-2"
           >
             Cancel
           </button>
           <button
             onClick={handleDialogConfirm}
-            className="bg-blue-400 button button-hover p-2 m-2"
+            className="btn-primary button button-hover p-2 m-2"
           >
             Okay
           </button>

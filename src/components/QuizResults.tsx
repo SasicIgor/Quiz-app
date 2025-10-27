@@ -2,6 +2,7 @@ import { useDialogContext } from "store/dialog-context/useDialogContext";
 import { ActionTypes } from "store/quiz-context/QuizTypes";
 import { useQuizContext } from "store/quiz-context/useQuizContext";
 import { useQTrackerContext } from "store/quiz-tracker-context/useQTrackerContext";
+
 import { getMessage } from "utils/utils";
 
 const QuizResults = () => {
@@ -10,13 +11,13 @@ const QuizResults = () => {
   const { handleDialogOpen } = useDialogContext();
 
   return (
-    <div className="flex-c flex-col border rounded mt-2 md:mt-20 py-10 px-2">
+    <div className="flex-c flex-col border rounded mt-2 md:mt-20 py-10 px-2 bg-white">
       <h3 className="text-2xl p-4">Your score:</h3>
       <h1 className="text-4xl p-4">{`${tstate.correctAnswers}/${state.questions.length}`}</h1>
-      <p className="text-3xl p-4">{getMessage(tstate.correctAnswers)}</p>
+      <p className="text-3xl p-4 text-center">{getMessage(tstate.correctAnswers)}</p>
       <div className="w-1/2 flex-c">
         <button
-          className={`button button-hover py-2 m-2 bg-blue-600 w-1/2`}
+          className={`button button-hover py-2 m-2 btn-secondary w-1/2`}
           onClick={() => {
             handleDialogOpen({
               text: "Retry? Really? You are not gonna have the same questions, are you sure?",
@@ -27,7 +28,7 @@ const QuizResults = () => {
           Retry
         </button>
         <button
-          className={`button button-hover py-2 m-2 text-black w-1/2`}
+          className={`button button-hover py-2 m-2 btn-primary w-1/2`}
           onClick={() => {
             handleDialogOpen({
               text: "Yea, I would try a different quiz as well. Good choice, finally.",

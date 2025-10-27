@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { TbXboxXFilled } from "react-icons/tb";
+
 import type { FormatedQuestion } from "store/quiz-context/QuizTypes";
 import { useQuizContext } from "store/quiz-context/useQuizContext";
 import { QTrackerActionTypes } from "store/quiz-tracker-context/QTrackerTypes";
 import { useQTrackerContext } from "store/quiz-tracker-context/useQTrackerContext";
+
 import Timer from "./Timer";
 
 const QuizQuestion = () => {
@@ -52,7 +54,7 @@ const QuizQuestion = () => {
   };
 
   return (
-    <div className="flex-c flex-col border rounded mt-2 md:mt-20 py-10 px-2 relative">
+    <div className="flex-c flex-col border rounded mt-2 md:mt-20 py-10 px-2 relative bg-white">
       <p className="absolute top-2 left-3">
         Q: {currentIndex + 1}/{questions.length}
       </p>
@@ -76,7 +78,7 @@ const QuizQuestion = () => {
               key={option}
               onClick={() => handleAnswerCheck(option)}
               disabled={!!userAnswer}
-              className={`cursor-pointer border rounded p-5 m-3 w-full text-left flex justify-between items-center ${getButtonClass(
+              className={`cursor-pointer border rounded p-5 m-3 w-full text-left flex justify-between items-center bg-white ${getButtonClass(
                 option
               )}`}
             >

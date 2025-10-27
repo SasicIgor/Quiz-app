@@ -7,6 +7,12 @@
   .button {
     @apply capitalize rounded border-1 cursor-pointer;
   }
+  .btn-primary {
+    @apply bg-amber-500;
+  }
+  .btn-secondary {
+    @apply bg-amber-200;
+  }
   .button-hover {
     @apply transition-transform hover:-translate-y-0.5 duration-200 ease-in-out;
   }

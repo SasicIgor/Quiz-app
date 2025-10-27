@@ -1,11 +1,14 @@
 import { useReducer } from "react";
+
+import { fetchQuestions } from "service/apiService";
+
 import { QuizContext } from "./QuizContext";
 import { initialState, quizReducer } from "./QuizReducer";
 import { ActionTypes, type Question } from "./QuizTypes";
-import { fetchQuestions } from "service/apiService";
-import { shuffleAnswers } from "utils/utils";
 import { useQTrackerContext } from "store/quiz-tracker-context/useQTrackerContext";
 import { QTrackerActionTypes } from "store/quiz-tracker-context/QTrackerTypes";
+
+import { shuffleAnswers } from "utils/utils";
 
 const QuizContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(quizReducer, initialState);

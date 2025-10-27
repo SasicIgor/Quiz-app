@@ -13,7 +13,7 @@ const QuizDynamics = () => {
   const { currentIndex, userAnswer } = tState;
 
   return (
-    <div className="flex justify-between text-white">
+    <div className="flex justify-between">
       <button
         onClick={
           currentIndex + 1 === qState.questions.length
@@ -25,14 +25,14 @@ const QuizDynamics = () => {
             : () => TDispatch({ type: QTrackerActionTypes.INCREASE_INDEX })
         }
         disabled={!userAnswer}
-        className={`button py-3 m-2 bg-blue-600 w-2/7 button-hover ${
+        className={`button py-3 m-2 btn-primary w-2/7 button-hover ${
           !userAnswer && "opacity-0"
         }`}
       >
         {currentIndex + 1 === qState.questions.length ? "Results" : "Next"}
       </button>
       <button
-        className={`button button-hover py-3 m-2 bg-blue-600 w-2/7`}
+        className={`button button-hover py-3 m-2 btn-secondary w-2/7`}
         onClick={() => {
           handleDialogOpen({
             text: "Retry? Really? You are not gonna have the same questions, are you sure?",
@@ -43,7 +43,7 @@ const QuizDynamics = () => {
         Retry
       </button>
       <button
-        className={`button button-hover py-3 m-2 text-black w-2/7`}
+        className={`button button-hover btn-secondary py-3 m-2 w-2/7`}
         onClick={() => {
           handleDialogOpen({
             text: "Quitting? Your mother raised you better!",

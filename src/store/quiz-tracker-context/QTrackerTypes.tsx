@@ -1,5 +1,3 @@
-//{currentIndex:number, correctAnswers:Number}
-
 export type QTrackerState = {
   currentIndex: number;
   correctAnswers: number;

@@ -20,7 +20,7 @@ export const getMessage = (canswers: number) => {
     case 1:
       return "You got one. Congrats, I guess? Statistically still awful, but hey - not a zero!";
     case 2:
-      return "Two right answers - looks like you guessed your way through life and it's still not working";
+      return "Two right answers - looks like you guessed your way through life and it's still not working.";
     case 3:
       return "You're starting to wake up, but it's giving 'barely tried' energy.";
     case 4:

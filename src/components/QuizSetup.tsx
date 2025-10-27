@@ -1,7 +1,8 @@
-import { categories, difficulties } from "../store/constants";
-import { useQuizContext } from "../store/quiz-context/useQuizContext";
-import { ActionTypes } from "../store/quiz-context/QuizTypes";
 import { TailSpin } from "react-loader-spinner";
+
+import { categories, difficulties } from "store/constants";
+import { useQuizContext } from "store/quiz-context/useQuizContext";
+import { ActionTypes } from "store/quiz-context/QuizTypes";
 import { useDialogContext } from "store/dialog-context/useDialogContext";
 
 const QuizSetup = () => {
@@ -25,7 +26,7 @@ const QuizSetup = () => {
   return (
     <>
       <div className="h-15 flex items-end">
-        <h1 className="md:text-2xl">
+        <h1 className="md:text-xl">
           Welcome to our new quiz to test your knowledge. Please choose one of
           the categories.
         </h1>
@@ -36,10 +37,10 @@ const QuizSetup = () => {
           return (
             <button
               key={category}
-              className={`button button-hover flex-c flex-col col-span-6 md:col-span-4 h-40 md:h-45 lg:h-55 ${
+              className={`button button-hover flex-c flex-col col-span-6 md:col-span-4 h-40 md:h-45 lg:h-55 bg-white ${
                 state.category !== "" &&
                 state.category !== category &&
-                `opacity-50`
+                `opacity-60`
               } `}
               onClick={() => {
                 dispatch({ type: ActionTypes.SET_CATEGORY, payload: category });
@@ -59,7 +60,7 @@ const QuizSetup = () => {
       <div className="row-start-3 grid grid-cols-12 gap-3 md:gap-5">
         {state.category && (
           <>
-            <h2 className="col-span-full pt-5 md:text-2xl">
+            <h2 className="col-span-full pt-5 md:text-xl">
               Choose the difficulty as well, but be aware that it will affect
               questions and time
             </h2>
@@ -67,10 +68,10 @@ const QuizSetup = () => {
               return (
                 <button
                   key={difficulty}
-                  className={`button button-hover p-2 col-span-4 md:col-span-2 row-start-2  text-xl${
+                  className={`button button-hover p-2 col-span-4 md:col-span-2 row-start-2 bg-white ${
                     state.difficulty !== "" &&
                     state.difficulty !== difficulty &&
-                    `opacity-50  bg-gray-200`
+                    `opacity-60`
                   }`}
                   onClick={() => {
                     dispatch({
@@ -87,9 +88,8 @@ const QuizSetup = () => {
         )}
         {state.category && state.difficulty && (
           <button
-            className="button p-2 col-span-12 md:col-span-6 row-start-3 md:row-start-2 bg-blue-400 flex-c button-hover"
+            className="button button-hover flex-c p-2 col-span-12 md:col-span-6 row-start-3 md:row-start-2 btn-primary"
             onClick={() => {
-              // fetchQuiz();
               handleDialogOpen({
                 text: `Ready to start? You will have ${timerDuration()} to answer questions. Good luck!`,
                 func: () => fetchQuiz(),

@@ -1,8 +1,9 @@
 import QuizQuestion from "./QuizQuestion";
 import QuizDynamics from "./QuizDynamics";
-import { useQuizContext } from "store/quiz-context/useQuizContext";
 import QuizSetup from "./QuizSetup";
 import QuizResults from "./QuizResults";
+
+import { useQuizContext } from "store/quiz-context/useQuizContext";
 
 const Quiz = () => {
   const { state } = useQuizContext();
