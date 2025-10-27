@@ -46,15 +46,15 @@ const QuizQuestion = () => {
   const getButtonClass = (answer: string) => {
     if (!userAnswer) return "hover:bg-gray-300 rounded";
     if (answer === question.correctAnswer)
-      return "bg-green-100 border rounded border-green-500";
+      return "bg-green-100 border rounded border-green-600";
     if (answer === userAnswer)
       return "bg-red-100 border rounded border-red-500";
 
-    return "border rounded opacity-50";
+    return "border rounded opacity-50 bg-white";
   };
 
   return (
-    <div className="flex-c flex-col border rounded mt-2 md:mt-20 py-10 px-2 relative bg-white">
+    <div className="flex-c flex-col border rounded mt-2 md:mt-20 py-10 px-2 relative bg-white opacity-90">
       <p className="absolute top-2 left-3">
         Q: {currentIndex + 1}/{questions.length}
       </p>
@@ -78,7 +78,7 @@ const QuizQuestion = () => {
               key={option}
               onClick={() => handleAnswerCheck(option)}
               disabled={!!userAnswer}
-              className={`cursor-pointer border rounded p-5 m-3 w-full text-left flex justify-between items-center bg-white ${getButtonClass(
+              className={`cursor-pointer border rounded p-5 m-3 w-full text-left flex justify-between items-center ${getButtonClass(
                 option
               )}`}
             >
