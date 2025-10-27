@@ -19,7 +19,7 @@ const QuizResults = () => {
       </p>
       <div className="w-full md:w-1/2 flex-c">
         <button
-          className={`button button-hover py-2 m-2 btn-secondary w-1/2`}
+          className={`button button-hover py-2 m-2 btn-secondary w-full`}
           onClick={() => {
             handleDialogOpen({
               text: "Retry? Really? You are not gonna have the same questions, are you sure?",
@@ -30,7 +30,7 @@ const QuizResults = () => {
           Retry
         </button>
         <button
-          className={`button button-hover py-2 m-2 btn-primary w-1/2`}
+          className={`button button-hover py-2 m-2 btn-primary w-full`}
           onClick={() => {
             handleDialogOpen({
               text: "Yea, I would try a different quiz as well. Good choice, finally.",
