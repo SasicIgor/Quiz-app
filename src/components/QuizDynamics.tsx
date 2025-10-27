@@ -32,7 +32,7 @@ const QuizDynamics = () => {
         {currentIndex + 1 === qState.questions.length ? "Results" : "Next"}
       </button>
       <button
-        className={`button py-3 m-2 bg-blue-600 w-2/7 button-hover`}
+        className={`button button-hover py-3 m-2 bg-blue-600 w-2/7`}
         onClick={() => {
           handleDialogOpen({
             text: "Retry? Really? You are not gonna have the same questions, are you sure?",
@@ -43,7 +43,7 @@ const QuizDynamics = () => {
         Retry
       </button>
       <button
-        className={`button py-3 m-2 text-black w-2/7 button-hover`}
+        className={`button button-hover py-3 m-2 text-black w-2/7`}
         onClick={() => {
           handleDialogOpen({
             text: "Quitting? Your mother raised you better!",

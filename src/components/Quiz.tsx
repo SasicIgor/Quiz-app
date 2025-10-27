@@ -2,11 +2,10 @@ import QuizQuestion from "./QuizQuestion";
 import QuizDynamics from "./QuizDynamics";
 import { useQuizContext } from "store/quiz-context/useQuizContext";
 import QuizSetup from "./QuizSetup";
-import { useQTrackerContext } from "store/quiz-tracker-context/useQTrackerContext";
+import QuizResults from "./QuizResults";
 
 const Quiz = () => {
   const { state } = useQuizContext();
-  const { state: trakerState } = useQTrackerContext();
 
   return (
     <div>
@@ -17,7 +16,7 @@ const Quiz = () => {
           <QuizDynamics />
         </>
       )}
-      {state.status === "finished" && trakerState.correctAnswers}
+      {state.status === "finished" && <QuizResults />}
     </div>
   );
 };

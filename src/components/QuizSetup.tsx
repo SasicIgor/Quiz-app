@@ -8,27 +8,29 @@ const QuizSetup = () => {
   const { state, dispatch, fetchQuiz } = useQuizContext();
   const { handleDialogOpen } = useDialogContext();
 
-  const timerDuration = ()=> {switch(state.difficulty){
-    case "easy":{
-      return "2 minutes"
+  const timerDuration = () => {
+    switch (state.difficulty) {
+      case "easy": {
+        return "2 minutes";
+      }
+      case "medium": {
+        return "1 and a half minute";
+      }
+      case "hard": {
+        return "1 minute";
+      }
     }
-    case "medium":{
-      return "1 and a half minute"
-    }
-    case "hard":{
-      return "1 minute"
-    }
-  }}
+  };
 
   return (
     <>
-      <div className="h-20 flex-c">
-        <h1>
+      <div className="h-15 flex items-end">
+        <h1 className="md:text-2xl">
           Welcome to our new quiz to test your knowledge. Please choose one of
           the categories.
         </h1>
       </div>
-      <div className="grid grid-cols-12 gap-3 md:gap-5">
+      <div className="grid grid-cols-12 gap-3 md:gap-3 pt-3">
         {categories.map((category) => {
           const text = category.replaceAll("_", " ");
           return (
@@ -49,7 +51,7 @@ const QuizSetup = () => {
                   className="w-full h-full object-cover"
                 />
               </p>
-              <p className="h-1/3 flex-c">{text}</p>
+              <p className="h-1/3 flex-c md:text-xl">{text}</p>
             </button>
           );
         })}
@@ -57,7 +59,7 @@ const QuizSetup = () => {
       <div className="row-start-3 grid grid-cols-12 gap-3 md:gap-5">
         {state.category && (
           <>
-            <h2 className="col-span-full">
+            <h2 className="col-span-full pt-5 md:text-2xl">
               Choose the difficulty as well, but be aware that it will affect
               questions and time
             </h2>
@@ -65,11 +67,11 @@ const QuizSetup = () => {
               return (
                 <button
                   key={difficulty}
-                  className={`button p-2 col-span-4 md:col-span-2 row-start-2 ${
+                  className={`button button-hover p-2 col-span-4 md:col-span-2 row-start-2  text-xl${
                     state.difficulty !== "" &&
                     state.difficulty !== difficulty &&
                     `opacity-50  bg-gray-200`
-                  } button-hover`}
+                  }`}
                   onClick={() => {
                     dispatch({
                       type: ActionTypes.SET_DIFFICULTY,

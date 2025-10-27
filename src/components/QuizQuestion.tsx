@@ -59,7 +59,7 @@ const QuizQuestion = () => {
       <p className="absolute top-2 right-3">
         <Timer />
       </p>
-      <h2 className="w-full md:w-1/3 font-semibold relative text-xl">
+      <h2 className="w-full md:w-1/3 font-semibold relative text-xl min-h-[110px]">
         {question.question.text}
       </h2>
 

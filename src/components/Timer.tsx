@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { ActionTypes } from "store/quiz-context/QuizTypes";
 import { useQuizContext } from "store/quiz-context/useQuizContext";
 
 const Timer = () => {
-  const { state } = useQuizContext();
+  const { state, dispatch } = useQuizContext();
 
   const getTime = () => {
     switch (state.difficulty) {
@@ -23,7 +24,8 @@ const Timer = () => {
   }, [state.questions]);
 
   useEffect(() => {
-    if (time <= 0) return;
+    if (time <= 0)
+      return dispatch({ type: ActionTypes.CHANGE_STATUS, payload: "finished" });
     const interval = setInterval(() => {
       setTime((prev) => {
         if (prev <= 1) {
